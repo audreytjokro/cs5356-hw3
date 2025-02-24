@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projects</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<!-- Google tag (gtag.js) -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-PZBKKM34CV"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'G-PZBKKM34CV');
+</script>
+<body>
+
+    <!-- Navigation Bar -->
+    <nav class="topnav">
+        <a href="index.html">Home</a>
+        <a href="about.html">About</a>
+        <a href="projects.html" class="active">Projects</a>
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- coming soon block-->
+    <div class="card-container">
+
+        <div class="project-card">
+            <p>Coming soon.</p>
+        </div>
+
+        <div class="project-card">
+            <p>In the meantime:</p>
+            <p>
+                I enjoy capturing moments on camera, find some of my work 
+                <a href="https://audreychristabelt.wixsite.com/portfolio">here</a>.
+            </p>
+        </div>
+                
+        <div class="project-card">
+            <p> I also enjoy art, and the Met right here in New York has an amazing collection.</p>
+                    <p>
+                        Here are some rotating artwork from the museum:
+                        <div id="image-container">
+                            <p>Click the button to load an image.</p>
+                        </div>
+                        <button id="new-image-btn">Get new artwork</button>
+                    
+                        <script>
+                            async function fetchRandomMetImage() {
+                                try {
+                                    // Get a list of all object IDs
+                                    const response = await fetch('https://collectionapi.metmuseum.org/public/collection/v1/objects');
+                                    const data = await response.json();
+                                    const randomId = data.objectIDs[Math.floor(Math.random() * data.objectIDs.length)];
+                    
+                                    // Fetch details of the random artwork
+                                    const artworkResponse = await fetch(`https://collectionapi.metmuseum.org/public/collection/v1/objects/${randomId}`);
+                                    const artworkData = await artworkResponse.json();
+                    
+                                    // Check if an image exists
+                                    if (artworkData.primaryImage) {
+                                        document.getElementById('image-container').innerHTML = `
+                                            <img src="${artworkData.primaryImage}" alt="${artworkData.title}" width="300">
+                                            <p><strong>Title:</strong> ${artworkData.title}</p>
+                                            <p><strong>Artist:</strong> ${artworkData.artistDisplayName || 'Unknown'}</p>
+                                            <p><strong>Date:</strong> ${artworkData.objectDate || 'Unknown'}</p>
+                                        `;
+                                    } else {
+                                        fetchRandomMetImage(); // Try again if no image
+                                    }
+                                } catch (error) {
+                                    console.error("Error fetching the Met image:", error);
+                                    document.getElementById('image-container').innerHTML = '<p>Failed to load image.</p>';
+                                }
+                            }
+                    
+                            // Attach event listener to the button
+                            document.getElementById('new-image-btn').addEventListener('click', fetchRandomMetImage);
+                    
+                            // Load the first image when the page loads
+                            fetchRandomMetImage();
+                        </script>
+                    </p>
+        
+                </div>
+        </div>
+            
+    </div>    
+</body>
+</html>

@@ -1,0 +1,155 @@
+body {
+    font-family: sans-serif;
+    font-size: 20px;
+    font-weight: 400;
+  }
+    
+  .topnav {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    overflow: hidden;
+    background-color: white;
+    padding: 30px 50px;
+  }
+  
+  .topnav a {
+    float: left;
+    color: #ddd;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size: 17px;
+  }
+  
+  .topnav a:hover {
+    color: black;
+  }
+  
+  .topnav a.active {
+    color: black; /* Keeps text color the same */
+    background-color: transparent; /* Removes background color */
+}
+
+  .text-container {
+    max-width: 600px; 
+    margin: 50px auto; 
+    padding: 20px;
+    font-size: 15px;
+    text-align: left; 
+}
+
+  .image-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: vh; 
+  }
+
+  .round-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%; 
+    object-fit: cover;
+    object-position: top;
+  }
+  /* Style inputs with type="text", select elements and textareas */
+input[type=text], select, textarea {
+    width: 100%; /* Full width */
+    padding: 12px; /* Some padding */ 
+    border: 1px solid #ccc; /* Gray border */
+    border-radius: 4px; /* Rounded borders */
+    box-sizing: border-box; /* Make sure that padding and width stays in place */
+    margin-top: 6px; /* Add a top margin */
+    margin-bottom: 16px; /* Bottom margin */
+    resize: vertical /* Allow the user to vertically resize the textarea (not horizontally) */
+  }
+  
+  /* Style the submit button with a specific background color etc */
+  input[type=submit] {
+    background-color: #000000;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  /* When moving the mouse over the submit button, add a darker green color */
+  input[type=submit]:hover {
+    background-color: #1a6d89;
+  }
+  
+  /* add a background color and some padding around the form in the container page */
+  .form-container {
+    border-radius: 5px;
+    background-color: #ffffff;
+    padding: 20px;
+    font-size: 14px;
+
+    display: flex;
+    justify-content: center;
+    max-width: 600px;
+    width: 100%; /* for the responsiveness*/
+    
+    margin: auto;
+  }
+  
+  .card-container {
+    display: flex;
+    flex-direction: column; /* Stacks cards vertically */
+    justify-content: center; /* Centers vertically */
+    align-items: center;
+}
+
+.project-card {
+    font-size: 15px;
+    background-color: white; /* Notion-like clean white background */
+    border-radius: 12px; /* Rounded corners */
+    padding: 20px; /* Spacing inside */
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1); /* Soft shadow */
+    margin: 20px 0; /* Space between each block */
+    max-width: 600px; /* Consistent width */
+    width: 100%;
+    min-height: 20px; /* Ensures equal height for all cards */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centers content inside each card */
+    justify-content: center; /* Centers content vertically */
+    text-align: center; /* Ensures text is centered */
+}
+
+
+.project-card:hover {
+    transform: translateY(-3px); /* Slight lift on hover */
+}
+
+.footer {
+    font-family: sans-serif; /* Clean, modern font */
+    font-size: 12px;
+    color: #222; /* Dark text for readability */
+    text-align: center; /* Align text to the left */
+    padding: 2px; /* Space around the footer */
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px
+}
+.footer-links{
+    display: flex;
+    justify-content: flex-start;
+    align-items: left;
+    gap: 10px
+}
+
+.footer a {
+    text-decoration: none; /* Remove underlines */
+    color: #222; /* Keep it uniform */
+    margin: 0 8px; /* Space between links */
+    font-weight: normal;
+}
+
+.footer a:hover {
+    text-decoration: underline; /* Add subtle hover effect */
+}
