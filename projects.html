@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    
+
 <!-- Google tag (gtag.js) -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-PZBKKM34CV"></script>
 <script>
@@ -27,12 +27,19 @@
         <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- coming soon block-->
+    <div class="text-container">
+        <p>
+            These are a collection of things I like and experiments I'm testing
+            out for fun! I'll add real projects eventually.
+        </p>
+    </div>
+
+    <!--the hovering blocks start here-->
     <div class="card-container">
 
-        <div class="project-card">
-            <p>Coming soon.</p>
-        </div>
+        <!-- <div class="project-card">
+            <p>More coming soon.</p>
+        </div> -->
 
         <div class="project-card">
             <p>In the meantime:</p>
@@ -40,6 +47,14 @@
                 I enjoy capturing moments on camera, find some of my work 
                 <a href="https://audreychristabelt.wixsite.com/portfolio">here</a>.
             </p>
+        </div>
+
+        <!-- width="560" height="315" this is the width reco by YouTube -->
+        <div class="project-card">
+            <p> I enjoy making videos from time to time too.</p>
+            <iframe width="560" height="315"
+            src="https://www.youtube.com/embed/MnG6hV7av6E?si=IGG3UZjlvZ6g5GVM" 
+            title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
         </div>
                 
         <div class="project-card">
@@ -91,6 +106,75 @@
                 </div>
         </div>
             
-    </div>    
+    </div>
+    
+    <div class="text-container">
+        <p>
+            Bonus: A little something for my own inner child.
+        </p>
+    </div>
+    <div class="pokemon-game">
+        <h3>Who's That Pokémon?</h3>
+        <div class="pokemon-container">
+            <img id="pokemon-silhouette" src="" alt="Who's that Pokémon?">
+        </div>
+        
+        <input type="text" id="pokemon-guess" placeholder="Enter Pokémon name">
+        <button id="submit-guess">Guess</button>
+        <button id="reveal-pokemon">Reveal</button>
+        <button id="try-again"> Try Again</button>
+    
+        <p id="guess-result"></p>
+    </div>  
+    <script>
+        let currentPokemon = "";
+
+        async function fetchRandomPokemon() {
+            const randomId = Math.floor(Math.random() * 151) + 1; // Get a random Pokémon (1-151 for Gen 1)
+            const apiUrl = `https://pokeapi.co/api/v2/pokemon/${randomId}`;
+
+            try {
+                const response = await fetch(apiUrl);
+                const data = await response.json();
+                currentPokemon = data.name; // Store the correct answer
+                document.getElementById('pokemon-silhouette').src = data.sprites.front_default;
+                document.getElementById('pokemon-silhouette').style.filter = "brightness(0)"; // Keep it blacked out
+                document.getElementById('guess-result').innerText = ""; // Clear previous guesses
+                document.getElementById('pokemon-guess').value = ""; // Clear input field
+            } catch (error) {
+                console.error("Error fetching Pokémon:", error);
+            }
+        }
+
+        // Check user guess
+        document.getElementById('submit-guess').addEventListener('click', function() {
+            const userGuess = document.getElementById('pokemon-guess').value.toLowerCase();
+            const resultText = document.getElementById('guess-result');
+
+            if (userGuess === currentPokemon) {
+                resultText.innerText = "Correct! 🎉";
+                resultText.className = "correct";
+                document.getElementById('pokemon-silhouette').style.filter = "brightness(1)";
+            } else {
+                resultText.innerText = "Wrong! Try again. ❌";
+                resultText.className = "wrong";
+            }
+        });
+
+        // Reveal the Pokémon
+        document.getElementById('reveal-pokemon').addEventListener('click', function() {
+            document.getElementById('pokemon-silhouette').style.filter = "brightness(1)"; // Reveal Pokémon
+            document.getElementById('guess-result').innerText = `It was ${currentPokemon.toUpperCase()}!`;
+            document.getElementById('guess-result').className = "correct";
+        });
+
+        // Try Again - Load a new Pokémon
+        document.getElementById('try-again').addEventListener('click', function() {
+            fetchRandomPokemon(); // Get a new Pokémon
+        });
+
+        // Load a new Pokémon when the page loads
+        fetchRandomPokemon();
+    </script>  
 </body>
 </html>
